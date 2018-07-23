@@ -1,0 +1,15 @@
+<div *ngIf="!selectedSpace">
+  <h2>Available Spaces</h2>
+  <ul class="spaces">
+    <li *ngFor="let space of spaces" 
+        [class.selected]="space === selectedSpace"
+        (click)="onSelect(space)">      
+      <span class="badge">{{space.name}}</span> 
+      <img class="preview" [src]="space.imageUrl" />
+    </li>
+  </ul>
+</div>
+<div *ngIf="selectedSpace">
+  <app-space-detail [space]="selectedSpace"></app-space-detail>
+  <a (click)="onBack()" href="#">Back</a>
+</div>
