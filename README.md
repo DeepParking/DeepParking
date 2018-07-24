@@ -1,7 +1,7 @@
 # 🚘 DeepParking
-## _Find the closest vacant parking spot._
+## _Find the closest vacant parking spot, every time._
 
-**DeepParking** is an _open-source solution_ for detecting vacant parking spots in indoor parking garages, and delivering realtime notifications to nearby drivers. Low-cost cameras are mounted throughout garages and mapped to locations of available parking spaces. As drivers enter the garage, they are routed to closest available free parking space.
+**DeepParking** is an _open-source solution_ for detecting vacant parking spots in indoor parking garages, and delivering real-time notifications to nearby drivers. Low-cost cameras are mounted throughout garages and mapped to locations of available parking spaces. State-of-the-art deep learning algorithms detect occupied spaces, and write the results to a Redis cache. As drivers enter the garage, they are routed to closest available free parking space.
 
 With **DeepParking**, you'll never have to waste time hunting for a parking spot again!
 
