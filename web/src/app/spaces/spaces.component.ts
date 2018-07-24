@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Space } from '../space';
-import { SPACES } from '../mock-spaces';
+import { SpaceService} from '../space.service';
 
 @Component({
   selector: 'app-spaces',
@@ -9,7 +9,7 @@ import { SPACES } from '../mock-spaces';
 })
 export class SpacesComponent implements OnInit {
 
-  spaces = SPACES;
+  spaces: Space[];
 
   selectedSpace: Space;
 
@@ -20,9 +20,14 @@ export class SpacesComponent implements OnInit {
     this.selectedSpace = undefined;
   }
 
-  constructor() { }
+  constructor(private spaceService: SpaceService) { }
 
   ngOnInit() {
+    this.getSpaces();
   }
 
+  getSpaces(): void {
+    this.spaceService.getSpaces()
+      .subscribe(spaces => this.spaces = spaces);
+  }
 }

@@ -1,3 +1,16 @@
-<h2>Driving Direction</h2>
-{{space.name}}
-<canvas class="direction" id="direction">
+<h2>Driving Direction to {{space.name}}</h2>
+<table>
+  <tr>
+    <td width="50%">
+        <canvas class="direction" id="direction"></canvas>
+    </td>
+    <td>
+        <ul class="instructions">
+          <li *ngFor="let instruction of instructions">      
+            <img class="icon" [src]="instruction.imageUrl" />
+            <span>{{instruction.text}}</span> 
+          </li>
+        </ul>
+    </td>
+  </tr>
+</table>

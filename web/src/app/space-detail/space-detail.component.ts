@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Space } from '../space';
+import { Instruction } from '../instruction';
 
 @Component({
   selector: 'app-space-detail',
@@ -8,8 +9,10 @@ import { Space } from '../space';
 })
 export class SpaceDetailComponent implements OnInit {
   private _space: Space;
+  private _instructions: Instruction[];
 
   @Input() set space(value: Space) {
+    this.generateInstructions(value);
     this._space = value;  
     var canvas : any = document.getElementById("direction"),
     ctx = canvas.getContext("2d");
@@ -40,7 +43,7 @@ export class SpaceDetailComponent implements OnInit {
       ctx.lineTo(18 + 28 * value.position, 35 * value.row);
       ctx.lineTo(18 + 28 * value.position, 35 * value.row-30);
       ctx.stroke();
-      
+
       ctx.beginPath();
       ctx.arc(18 + 28 * value.position,35 * value.row-30,
           10,0, 2 *Math.PI, false);
@@ -56,9 +59,31 @@ export class SpaceDetailComponent implements OnInit {
     return this._space;
   }
 
-  constructor() { }
+  get instructions(): Instruction[]{
+    return this._instructions;
+  }
+
+  generateInstructions(space:Space): Instruction[] {    
+    this._instructions.push( {
+      text: 'Go south ' + space.row + ' rows',
+      imageUrl: 'assets/imgs/down.png'
+    });
+    this._instructions.push( {
+      text: 'turn left',
+      imageUrl: 'assets/imgs/left.png'
+    });
+    this._instructions.push( {
+      text: 'turn left at position ' + space.position,
+      imageUrl: 'assets/imgs/left.png'
+    });
+    return null;
+  }
+  constructor() { 
+    this._instructions = [];
+  }
 
   ngOnInit() {
+    
   }
   
 }
