@@ -26,7 +26,7 @@ def get_vacant_spots(image_path):
 	net = Detector(bytes("cfg/yolov3.cfg", encoding="utf-8"), bytes("weights/yolov3.weights", encoding="utf-8"), 0, bytes("cfg/coco.data", encoding="utf-8"))
 	
 	# Path to image.
-	img = cv2.imread('../data/cars1.jpg')
+	img = cv2.imread(image_path)
 	img_darknet = Image(img)
 	results = net.detect(img_darknet)
 
