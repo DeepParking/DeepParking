@@ -1,16 +1,30 @@
 .direction {
-    width:80%;
+    width:100%;
 }
 .icon {
     width:50px;
     height:50px;
+    margin:3px;
 }
 li {
     cursor: pointer;
     position: relative;
     left: 0;
-    background-color: #EEE;
     margin: .5em;
     padding: .3em 0;
     border-radius: 4px;
+    text-align: left;
+    list-style-type: none;
+}
+.instruction {
+    margin-top: 18px; 
+    margin-left: 3px; 
+    vertical-align: top; 
+    display: inline-block;
+}
+td {
+    vertical-align: top;
+}
+.map-cell {
+    vertical-align: middle;
 }

@@ -1,16 +1,16 @@
 <h2>Driving Direction to {{space.name}}</h2>
-<table>
-  <tr>
-    <td width="50%">
+<div fxLayout='column' class='zero'>
+  <div fxFlex="100%" [fxLayout]="direction" fxLayout.md="row">
+  <div fxFlex='50%' fxFlex.gt-sm="100%">
         <canvas class="direction" id="direction"></canvas>
-    </td>
-    <td>
+  </div>
+  <div fxFlex='50%' fxFlex.gt-sm="100%">
         <ul class="instructions">
           <li *ngFor="let instruction of instructions">      
             <img class="icon" [src]="instruction.imageUrl" />
-            <span>{{instruction.text}}</span> 
+            <span class="instruction">{{instruction.text}}</span> 
           </li>
         </ul>
-    </td>
-  </tr>
-</table>
+  </div>
+  </div>
+</div>
