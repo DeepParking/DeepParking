@@ -25,4 +25,5 @@ def get_vacant_spots(image_path):
 			'IMAGE_PATH' : image_path}
 		
 
-print(get_vacant_spots('cars1.jpg'))
+# Test call
+#print(get_vacant_spots('cars1.jpg'))
