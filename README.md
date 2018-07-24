@@ -18,7 +18,7 @@ With **DeepParking**, you'll never have to waste time hunting for a parking spot
 * Deployment (Kubernetes, Docker)
 
 ----------------------------
-### Project Team
+### 👍 Project Team
 
 * [**Haishi Bai**](https://twitter.com/HaishiBai2010) (_Principal Software Engineer_, Office of the Azure CTO)
 * [**Yaron Schneider**]() (_Senior Software Engineer_, Office of the Azure CTO)
