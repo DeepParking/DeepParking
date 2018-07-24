@@ -11,6 +11,8 @@ With **DeepParking**, you'll never have to waste time hunting for a parking spot
 
 ### 📖 Technical Stack
 
+![](https://github.com/DeepParking/DeepParking/blob/master/img/cardetectorgif.gif)
+
 **DeepParking** prides itself on being a 100% open-source solution, from algorithm to web application.
 
 #### [Web Application](https://github.com/DeepParking/DeepParking/tree/master/web)
