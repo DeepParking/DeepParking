@@ -108,8 +108,3 @@ debug/
 
 # vscode
 .vscode/
-
-# YOLO
-cfg/
-data/
-weights/
