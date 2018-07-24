@@ -16,7 +16,7 @@ With **DeepParking**, you'll never have to waste time hunting for a parking spot
 #### [Web Application](https://github.com/DeepParking/DeepParking/tree/master/web)
 Angular CLI version 6.0.8.
 
-#### [Deep Learning: Object Detection]((https://github.com/DeepParking/DeepParking/tree/master/web))
+#### [Deep Learning: Object Detection](https://github.com/DeepParking/DeepParking/tree/master/camera_gateway_api)
 Leverages the state-of-the-art [YOLO](https://pjreddie.com/darknet/yolo/) v3 real-time object detection system.
 
 #### [Scalable Deployment](https://github.com/DeepParking/DeepParking/tree/master/spots_api)
