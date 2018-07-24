@@ -10,7 +10,7 @@ def status():
  
 @app.route("/spots/<int:area_id>")
 def get_spots(area_id):
-    data = spots.get_free_parking_spots(area_id)
+    data = spots.get_vacant_parking_spots(area_id)
     return jsonify({ 'status': 'ok', 'results': data })
 
 if __name__ == "__main__":
