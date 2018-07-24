@@ -1,0 +1,11 @@
+{
+    "id": 1,
+    "name": "Building 43",
+    "cameras": [
+        {
+            "id": "cam1",
+            "floor": "1",
+            "row": 3
+        }
+    ]
+}
