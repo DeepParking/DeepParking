@@ -5,6 +5,7 @@
 
 With **DeepParking**, you'll never have to waste time hunting for a parking spot again!
 
+![](https://github.com/DeepParking/DeepParking/blob/master/img/logo.jpg)
 ![](https://github.com/DeepParking/DeepParking/blob/master/img/garage_directions.jpg)
 
 ---------------------------
