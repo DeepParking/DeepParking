@@ -79,6 +79,20 @@ Wait for the following deployments to appear as running:
 * spots-deployment
 
 
+#### Setup the parking lot on Redis
+
+Forward traffic from the Redis service:
+
+```
+$ kubectl port-forward svc/redis-svc 6379:6379
+```
+
+Edit the area.json to your liking and run the setup script:
+
+```
+$ python3 ./setup/setup_area.py --redis-host=localhost
+```
+
 ##### Get the External IP of the camera tester:
 
 ```

@@ -1,6 +1,10 @@
 {
     "id": 1,
     "name": "Building 43",
+    "coordinates": {
+        "latitude": 47.638624,
+        "longitude": -122.134834
+    },
     "cameras": [
         {
             "id": "cam1",
