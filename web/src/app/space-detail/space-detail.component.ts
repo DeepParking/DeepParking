@@ -41,7 +41,7 @@ export class SpaceDetailComponent implements OnInit {
       var rowMap = [70, 70, 190, 190, 310, 310, 70];
 
       var y = rowMap[Math.min(value.row, rowMap.length-1)];
-      var x = 28 * value.position;
+      var x = 34 * value.position;
       var offset = value.row % 2 == 0 ? -30: 30;
       ctx.moveTo(18,35);
       ctx.lineTo(18, y);
