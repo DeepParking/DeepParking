@@ -1,0 +1,62 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>DeepPark Camera Tester</title>
+</head>
+
+<body>
+    <video style="width: 100%; height: 100%;" autoplay></video>
+    <canvas style="display:none;"></canvas>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+        function getUrlVars() {
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
+
+        $(document).ready(function () {
+            var areaID = getUrlVars()["areaID"];
+            const canvas = document.createElement('canvas');
+
+            const constraints = {
+                video: true
+            };
+
+            const video = document.querySelector('video');
+
+            navigator.mediaDevices.getUserMedia(constraints).then((stream) => { video.srcObject = stream });
+            navigator.mediaDevices.getUserMedia().
+                then((stream) => { video.srcObject = stream });
+
+            setTimeout(function () {
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                canvas.getContext('2d').drawImage(video, 0, 0);
+
+                imgData = canvas.toDataURL('image/jpg');
+
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost:8080/process/1/cam1",
+                    processData: false,
+                    data: encodeURIComponent(imgData),
+                }).done(function () {
+                    console.log('sent');
+                });
+            }, 6000);
+        });
+    </script>
+</body>
+
+</html>

@@ -43,11 +43,14 @@ RUN pip3 install --upgrade pip
 RUN pip3 install pkgconfig
 RUN pip3 install cython
 RUN pip3 install Flask
+RUN pip3 install flask-cors
 RUN pip3 install opencv-python
 RUN pip3 install opencv-contrib-python
+RUN pip3 install Pillow
+RUN pip3 install redis
 RUN python3 setup.py build_ext --inplace
 
 ADD . /YOLO3-4-Py
 
 ## Run ##
-CMD ["python3", "server.py"]
+CMD ["python3", "-u", "server.py"]

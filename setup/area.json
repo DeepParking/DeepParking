@@ -4,8 +4,9 @@
     "cameras": [
         {
             "id": "cam1",
-            "floor": "1",
-            "row": 3
+            "level": "1",
+            "position": "",
+            "row": 1
         }
     ]
 }
