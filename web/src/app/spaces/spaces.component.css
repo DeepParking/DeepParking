@@ -44,3 +44,10 @@
       height:120px;     
       vertical-align: bottom; 
   }
+  .full {
+    font-size: 48pt;
+    background: yellow;
+    border-style: solid;
+    border-color:black;
+    
+  }

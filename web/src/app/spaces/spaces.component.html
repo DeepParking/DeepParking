@@ -1,13 +1,18 @@
-<div *ngIf="!selectedSpace">
-  <h2>Available Spaces</h2>
-  <ul class="spaces">
-    <li *ngFor="let space of spaces" 
-        [class.selected]="space === selectedSpace"
-        (click)="onSelect(space)">      
-      <span class="badge">P{{space.level}}</span> 
-      <img class="preview" [src]="space.imageUrl" />
-    </li>
-  </ul>
+<div *ngIf="!selectedSpace">  
+  <div *ngIf="spaces?.length > 0">
+      <h2>Available Spaces</h2>
+      <ul class="spaces">
+        <li *ngFor="let space of spaces" 
+          [class.selected]="space === selectedSpace"
+          (click)="onSelect(space)">      
+          <span class="badge">P{{space.level}}</span> 
+          <img class="preview" [src]="space.imageUrl" />
+        </li>
+      </ul>
+  </div>
+  <div *ngIf="spaces?.length == 0">
+    <div class="full">Garage Full</div>
+  </div>
 </div>
 <div *ngIf="selectedSpace">
   <app-space-detail [space]="selectedSpace"></app-space-detail>
