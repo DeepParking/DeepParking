@@ -6,6 +6,7 @@ import numpy as np
 import cv2
 
 net = Detector(bytes("cfg/yolov3.cfg", encoding="utf-8"), bytes("weights/yolov3.weights", encoding="utf-8"), 0, bytes("cfg/coco.data", encoding="utf-8"))
+categories = ['car', 'truck']
 
 def get_vacant_spots(img_base64):
 	starter = img_base64.find(',')
@@ -19,7 +20,7 @@ def get_vacant_spots(img_base64):
 	inferred_bounding_boxes = []
 
 	for cat, score, bounds in results:
-		if bounds[3] > 400:
+		if cat in categories and bounds[3] > 400:
 			inferred_bounding_boxes.append(bounds)
 
 	if 4 - len(inferred_bounding_boxes) > 0:

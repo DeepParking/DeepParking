@@ -4,15 +4,43 @@
 
 <head>
     <meta charset="utf-8">
-
     <title>DeepPark Camera Tester</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 </head>
 
 <body>
-    <video style="width: 100%; height: 100%;" autoplay></video>
-    <canvas style="display:none;"></canvas>
+    <div class="text-center" id="setup-section">
+        <br>
+        <br>
+        <h2>Camera Setup</h2>
+        <div class="container">
+            <form>
+                <div class="form-group">
+                    <label for="apiServerAddress">API Server Address</label>
+                    <input type="text" class="form-control" id="apiServerAddress" placeholder="IP or DNS of the DeepPark Client API">
+                </div>
+                <div class="form-group">
+                    <label for="areaId">Area ID</label>
+                    <input type="text" class="form-control" id="areaId" placeholder="Area ID is your Parking Space ID">
+                </div>
+                <div class="form-check">
+                    <label for="cameraId">Camera ID</label>
+                    <input type="text" class="form-control" id="cameraId" placeholder="ID of the Camera">
+                </div>
+                <br>
+                <br>
+                <button type="button" id="submitBtn" class="btn btn-success">I'm a Camera!</button>
+            </form>
+        </div>
+    </div>
+
+    <div style="display: none;" id="video-section">
+        <video style="width: 100%; height: 100%;" autoplay></video>
+        <canvas style="display:none;"></canvas>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script>
         function getUrlVars() {
             var vars = [], hash;
@@ -26,35 +54,57 @@
         }
 
         $(document).ready(function () {
-            var areaID = getUrlVars()["areaID"];
-            const canvas = document.createElement('canvas');
+            $('#submitBtn').click(function () {
+                var cameraId = $('#cameraId').val();
+                var areaId = $('#areaId').val();
+                var apiAddress = $('#apiServerAddress').val();
 
-            const constraints = {
-                video: true
-            };
+                if (cameraId == "" || areaId == "" || apiAddress == "") {
+                    alert("Please fill all fields");
+                    return;
+                }
 
-            const video = document.querySelector('video');
+                $('#setup-section').hide();
+                $('#video-section').show();
 
-            navigator.mediaDevices.getUserMedia(constraints).then((stream) => { video.srcObject = stream });
-            navigator.mediaDevices.getUserMedia().
-                then((stream) => { video.srcObject = stream });
+                var areaID = getUrlVars()["areaID"];
+                const canvas = document.createElement('canvas');
 
-            setTimeout(function () {
-                canvas.width = video.videoWidth;
-                canvas.height = video.videoHeight;
-                canvas.getContext('2d').drawImage(video, 0, 0);
+                const constraints = {
+                    video: true
+                };
 
-                imgData = canvas.toDataURL('image/jpg');
+                const video = document.querySelector('video');
 
-                $.ajax({
-                    type: "POST",
-                    url: "http://localhost:8080/process/1/cam1",
-                    processData: false,
-                    data: encodeURIComponent(imgData),
-                }).done(function () {
-                    console.log('sent');
-                });
-            }, 6000);
+                navigator.mediaDevices.getUserMedia(constraints).then((stream) => { video.srcObject = stream });
+                navigator.mediaDevices.getUserMedia().
+                    then((stream) => { video.srcObject = stream });
+
+                var busy = false;
+
+                setInterval(function () {
+                    if (busy) {
+                        return;
+                    }
+
+                    busy = true;
+
+                    canvas.width = video.videoWidth;
+                    canvas.height = video.videoHeight;
+                    canvas.getContext('2d').drawImage(video, 0, 0);
+
+                    imgData = canvas.toDataURL('image/jpg');
+
+                    $.ajax({
+                        type: "POST",
+                        url: "http://" + apiAddress + "/process/" + areaId + "/" + cameraId,
+                        processData: false,
+                        data: encodeURIComponent(imgData),
+                    }).always(function () {
+                        busy = false;
+                    });
+                }, 3000);
+            });
         });
     </script>
 </body>
