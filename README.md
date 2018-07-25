@@ -116,7 +116,14 @@ $ kubectl get svc driverapp-svc
 
 Point your mobile device browser to the IP address.
 
-#### Connecting to DeepParking services
+#### Running the Camera Tester
+
+DeepPark allows you to mimic a camera by running a simple web app locally that sends images to the Camera Gateway API.
+Simply open camera_tester/index.html on a local device (or behind an SSL public internet endpoint) and input the following values:
+
+* Camera Gateway Address - The public ip of the Camera Gateway API
+* Area ID - The Area ID you created in setup/area.json
+* Camera ID - The ID of the camera you will be sending photos as, created in setup/area.json
 
 ##### Get the External IP of the camera tester:
 
