@@ -35,22 +35,28 @@ export class SpaceDetailComponent implements OnInit {
       ctx.fillStyle = 'green';
       ctx.fill();
       ctx.lineWidth = 5;
-      ctx.strokeStyle = '#003300';
+      ctx.strokeStyle = '#00FFFF';
       ctx.stroke(); 
      
+      var rowMap = [70, 70, 190, 190, 310, 310, 70];
+
+      var y = rowMap[Math.min(value.row, rowMap.length-1)];
+      var x = 28 * value.position;
+      var offset = value.row % 2 == 0 ? -30: 30;
       ctx.moveTo(18,35);
-      ctx.lineTo(18, 35 * value.row);
-      ctx.lineTo(18 + 28 * value.position, 35 * value.row);
-      ctx.lineTo(18 + 28 * value.position, 35 * value.row-30);
+      ctx.lineTo(18, y);
+      
+      ctx.lineTo(18 + x, y);
+      ctx.lineTo(18 + x, y+offset);
       ctx.stroke();
 
       ctx.beginPath();
-      ctx.arc(18 + 28 * value.position,35 * value.row-30,
+      ctx.arc(18 +  x, y+offset,
           10,0, 2 *Math.PI, false);
       ctx.fillStyle = 'red';
       ctx.fill();
       ctx.lineWidth = 5;
-      ctx.strokeStyle = '#003300';
+      ctx.strokeStyle = '#00FFFF';
       ctx.stroke(); 
 
      }
@@ -64,17 +70,19 @@ export class SpaceDetailComponent implements OnInit {
   }
 
   generateInstructions(space:Space): Instruction[] {    
+    var turn1 = space.row % 2 == 0? 'left': 'left';
+    var turn2 = space.row % 2 == 0? 'left': 'right';
     this._instructions.push( {
-      text: 'Go south ' + space.row + ' rows',
+      text: 'Go South ' + space.row + ' rows',
       imageUrl: 'assets/imgs/down.png'
     });
     this._instructions.push( {
-      text: 'turn left',
-      imageUrl: 'assets/imgs/left.png'
+      text: 'Turn ' + turn1,
+      imageUrl: 'assets/imgs/' + turn1 + '.png'
     });
     this._instructions.push( {
-      text: 'turn left at position ' + space.position,
-      imageUrl: 'assets/imgs/left.png'
+      text: 'Turn ' + turn2 +'  at position ' + space.position,
+      imageUrl: 'assets/imgs/' + turn2 + '.png'
     });
     return null;
   }
