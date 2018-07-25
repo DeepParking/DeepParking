@@ -42,6 +42,73 @@ Estimated cost for 100-car garage: $150
 
 -----------------------------
 
+### Usage
+
+DeepPark is made up of the following components:
+
+* Camera Gateway API - Receives images from cameras, performs vacant spot analysis on the images and pushes the results to Redis
+* Spots API - External facing API that is used by the Web App to provide vacant parking spots info
+* Web App - A web application for drivers that shows information about vacant parking spots
+* Redis - stores results about parking areas, cameras and vacant spots for realtime querying
+
+In order to set-up an environment locally, edit the area.json file that contains metadata about the parking lot and start a local Redis instance. <br>
+Run the Python setup script:
+
+```
+$ python3 ./setup/setup_area.py --redis-host=localhost
+```
+
+The same script can be run on any accessible redis host to set-up the environment.
+
+#### Running on Kubernetes
+
+DeepPark runs natively on Kubernetes.
+To install DeepPark, simply run:
+
+```
+$ kubectl create -f ./setup/kubernetes
+```
+
+Thats it!
+Wait for the following deployments to appear as running:
+
+* camera-gateway-deployment
+* camera-tester-deployment
+* redis-deployment
+* spots-deployment
+
+
+##### Get the External IP of the camera tester:
+
+```
+$ kubectl get svc camera-tester-svc
+```
+
+
+##### Get the External IP of the camera tester:
+
+```
+$ kubectl get svc camera-tester-svc
+```
+
+The Camera Tester App will ask for the address of the Camera Gateway API.
+Get it with:
+
+```
+$ kubectl get svc camera-gateway-svc
+```
+
+*Note: The Camera Gateway API uses port 8080.*
+
+
+###### Get the External IP of the driver app:
+
+```
+$ kubectl get svc driver-app-svc
+```
+
+-----------------------------
+
 ### 👍 Project Team
 
 * [**Haishi Bai**](https://twitter.com/HaishiBai2010) (_Principal Software Engineer_, Office of the Azure CTO)
