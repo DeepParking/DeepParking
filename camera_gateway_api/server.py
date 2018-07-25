@@ -47,7 +47,7 @@ def process_image(area_id, camera_id):
                     'level': camera['level'],
                     'row': camera['row'],
                     'position': camera['position'],
-                    'name': camera['id'],
+                    'id': camera['id'],
                     'imageUrl': data['image']
                 }
 
