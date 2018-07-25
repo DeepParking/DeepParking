@@ -93,6 +93,29 @@ Edit the area.json to your liking and run the setup script:
 $ python3 ./setup/setup_area.py --redis-host=localhost
 ```
 
+#### Deploying the driver app
+
+Grab the Spots API External IP:
+
+```
+$ kubectl get svc spots-api-svc
+```
+
+Take the Area ID you created earlier and edit the API_URL and AREA_ID env variables in setup/kubernetes/driver_app.
+Deploy the app:
+
+```
+$ kubectl create -f ./setup/kubernetes/driver_app
+```
+
+Wait for the External IP to show up:
+
+```
+$ kubectl get svc driverapp-svc
+```
+
+Point your mobile device browser to the IP address.
+
 #### Connecting to DeepParking services
 
 ##### Get the External IP of the camera tester:
@@ -111,15 +134,6 @@ $ kubectl get svc camera-gateway-svc
 ```
 
 *Note: The Camera Gateway API uses port 8080.*
-
-
-##### Get the External IP of the driver app:
-
-```
-$ kubectl get svc driver-app-svc
-```
-
-Point your mobile device browser to the IP of the driver app.
 
 Done!
 

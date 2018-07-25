@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: driverapp-deployment
+  labels:
+    app: driverapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: driverapp
+  template:
+    metadata:
+      labels:
+        app: driverapp
+    spec:
+      containers:
+      - name: driverapp
+        image: yaron2/deeppark
+        env:
+        - name: API_URL
+          value: ""
+        - name: AREA_ID
+          value: ""
+        ports:
+        - containerPort: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: driverapp-svc
+spec:
+  selector:
+    app: driverapp
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: LoadBalancer
