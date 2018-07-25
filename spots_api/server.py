@@ -27,10 +27,7 @@ def get_spots_by_location():
     longitude = request.args.get('longitude')
     vacant_spots = spots.get_vacant_parking_spots_by_location(latitude, longitude)
 
-    if vacant_spots:
-        return jsonify(vacant_spots)
-    else:
-        return jsonify([])
+    return jsonify(vacant_spots)
 
 
 if __name__ == "__main__":

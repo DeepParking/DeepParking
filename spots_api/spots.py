@@ -27,13 +27,15 @@ def get_vacant_parking_spots_by_location(latitude, longitude):
 
 
 def get_vacant_parking_spots(areaId):
-    data = r.get("spots-" + str(areaId))
+    vacant_spots = []
 
-    if data is not None:
+    for key in r.scan_iter("spots-" + str(areaId) + "-*"):
+        data = r.get(key)
         s = data.decode("utf-8")
-        vacant_spots = json.loads(s)
-        
-        return vacant_spots
+        spot = json.loads(s)
+        vacant_spots.append(spot)
+    
+    return vacant_spots
 
 def find_distance(lat1, lng1, lat2, lng2):
     R = 6373.0

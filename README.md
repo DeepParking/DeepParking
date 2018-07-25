@@ -93,12 +93,7 @@ Edit the area.json to your liking and run the setup script:
 $ python3 ./setup/setup_area.py --redis-host=localhost
 ```
 
-##### Get the External IP of the camera tester:
-
-```
-$ kubectl get svc camera-tester-svc
-```
-
+#### Connecting to DeepParking services
 
 ##### Get the External IP of the camera tester:
 
@@ -106,7 +101,9 @@ $ kubectl get svc camera-tester-svc
 $ kubectl get svc camera-tester-svc
 ```
 
-The Camera Tester App will ask for the address of the Camera Gateway API.
+Point your browser window to the IP of the camera tester.
+
+The Camera Tester App will ask for the IP address of the Camera Gateway API.
 Get it with:
 
 ```
@@ -116,11 +113,15 @@ $ kubectl get svc camera-gateway-svc
 *Note: The Camera Gateway API uses port 8080.*
 
 
-###### Get the External IP of the driver app:
+##### Get the External IP of the driver app:
 
 ```
 $ kubectl get svc driver-app-svc
 ```
+
+Point your mobile device browser to the IP of the driver app.
+
+Done!
 
 -----------------------------
 

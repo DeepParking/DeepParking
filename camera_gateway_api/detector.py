@@ -26,6 +26,6 @@ def get_vacant_spots(img_base64):
 	if 4 - len(inferred_bounding_boxes) > 0:
 		return {'available_spaces': 4 - len(inferred_bounding_boxes),
 			'image' : img_base64}
-	else: 
+	else:
 		return {'available_spaces': 0,
 			'image' : img_base64}
