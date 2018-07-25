@@ -13,6 +13,7 @@ export class SpacesComponent implements OnInit {
   spaces: Space[];
 
   selectedSpace: Space;
+  interval;
 
   onSelect(space: Space): void {
     this.selectedSpace = space;
@@ -24,13 +25,15 @@ export class SpacesComponent implements OnInit {
   constructor(private spaceService: SpaceService) { }
 
   ngOnInit() {
-    this.getSpaces();
+    this.interval = setInterval(() => {
+      this.getSpaces();
+    },1000)
   }
 
   getSpaces(): void {
     navigator.geolocation.getCurrentPosition((coordinates) => {
       let lat = coordinates.coords.latitude
-      let lng = coordinates.coords.latitude
+      let lng = coordinates.coords.longitude
 
       this.spaceService.getSpaces(lat, lng)
       .subscribe(spaces => {
