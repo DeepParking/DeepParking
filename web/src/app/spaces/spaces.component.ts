@@ -5,7 +5,8 @@ import { SpaceService} from '../space.service';
 @Component({
   selector: 'app-spaces',
   templateUrl: './spaces.component.html',
-  styleUrls: ['./spaces.component.css']
+  styleUrls: ['./spaces.component.css'],
+  providers:[SpaceService]
 })
 export class SpacesComponent implements OnInit {
 
@@ -27,7 +28,14 @@ export class SpacesComponent implements OnInit {
   }
 
   getSpaces(): void {
-    this.spaceService.getSpaces()
-      .subscribe(spaces => this.spaces = spaces);
+    navigator.geolocation.getCurrentPosition((coordinates) => {
+      let lat = coordinates.coords.latitude
+      let lng = coordinates.coords.latitude
+
+      this.spaceService.getSpaces(lat, lng)
+      .subscribe(spaces => {
+        this.spaces = spaces 
+      });
+    })
   }
 }
