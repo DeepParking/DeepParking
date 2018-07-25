@@ -42,7 +42,6 @@ def process_image(area_id, camera_id):
         area_json = json.loads(s)
         cameras = area_json['cameras']
         for camera in cameras:
-            print("cam")
             if camera['id'] == camera_id:
                 vacant_spot = {
                     'level': camera['level'],
