@@ -12,13 +12,20 @@ import { HttpClient} from '@angular/common/http';
 export class SpaceService {
   
   private apiUrl: string;
+  private areaId: string;
 
-  getSpaces(lat, lng): Observable<Space[]> {
+  getSpacesByLocation(lat, lng): Observable<Space[]> {
     return this.http.get<Space[]>("http://" + this.apiUrl + "/spots?latitude=" + lat + "&longitude=" + lng)
   }
+
+  getSpaces(): Observable<Space[]> {
+    return this.http.get<Space[]>("http://" + this.apiUrl + "/spots/" + this.areaId)
+  }
+
   constructor(private http: HttpClient) { 
     this.http.get('assets/json/config.json').subscribe((config) => {
       this.apiUrl = config['apiUrl'];
+      this.areaId = config['areaId'];
     });
   } 
 }

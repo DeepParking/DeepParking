@@ -1,3 +1,4 @@
 {
-    "apiUrl":"40.83.166.124"
+    "apiUrl":"${API_URL}",
+    "areaId": "${AREA_ID}"
 }

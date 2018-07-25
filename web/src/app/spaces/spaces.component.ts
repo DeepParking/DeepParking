@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Space } from '../space';
-import { SpaceService} from '../space.service';
+import { SpaceService } from '../space.service';
 
 @Component({
   selector: 'app-spaces',
   templateUrl: './spaces.component.html',
   styleUrls: ['./spaces.component.css'],
-  providers:[SpaceService]
+  providers: [SpaceService]
 })
 export class SpacesComponent implements OnInit {
 
@@ -18,7 +18,7 @@ export class SpacesComponent implements OnInit {
   onSelect(space: Space): void {
     this.selectedSpace = space;
   }
-  onBack(): void{
+  onBack(): void {
     this.selectedSpace = undefined;
   }
 
@@ -27,18 +27,25 @@ export class SpacesComponent implements OnInit {
   ngOnInit() {
     this.interval = setInterval(() => {
       this.getSpaces();
-    },1000)
+    }, 1000)
   }
 
   getSpaces(): void {
+    this.spaceService.getSpaces()
+      .subscribe(spaces => {
+        this.spaces = spaces
+      });
+  }
+
+  getSpacesByLocation(): void {
     navigator.geolocation.getCurrentPosition((coordinates) => {
       let lat = coordinates.coords.latitude
       let lng = coordinates.coords.longitude
 
-      this.spaceService.getSpaces(lat, lng)
-      .subscribe(spaces => {
-        this.spaces = spaces 
-      });
+      this.spaceService.getSpacesByLocation(lat, lng)
+        .subscribe(spaces => {
+          this.spaces = spaces
+        });
     })
   }
 }

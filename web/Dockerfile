@@ -1,4 +1,5 @@
-FROM nginx:1.13.3-alpine
+FROM nginx:1.10.3-alpine
+RUN apk add --update bash && rm -rf /var/cache/apk/*
 
 ## Copy our default nginx config
 COPY default.conf /etc/nginx/conf.d/
@@ -7,8 +8,10 @@ COPY default.conf /etc/nginx/conf.d/
 RUN rm -rf /usr/share/nginx/html/*
 
 ## copy over the artifacts in dist folder to default nginx public folder
-COPY dist /usr/share/nginx/html
+COPY dist/web /usr/share/nginx/html
 
 ## startup.sh script is launched at container run
+WORKDIR /
 ADD startup.sh /startup.sh
-CMD /startup.sh
+RUN chmod +x /startup.sh
+CMD ["/bin/bash", "/startup.sh"]
