@@ -20,12 +20,15 @@ def get_vacant_spots(img_base64):
 	inferred_bounding_boxes = []
 
 	for cat, score, bounds in results:
-		if cat in categories and bounds[3] > 400:
+		if cat not in categories:
+			return
+
+		if bounds[3] > 400:
 			inferred_bounding_boxes.append(bounds)
 
 	if 4 - len(inferred_bounding_boxes) > 0:
 		return {'available_spaces': 4 - len(inferred_bounding_boxes),
 			'image' : img_base64}
-	else: 
+	else:
 		return {'available_spaces': 0,
 			'image' : img_base64}
