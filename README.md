@@ -60,7 +60,7 @@ $ python3 ./setup/setup_area.py --redis-host=localhost
 
 The same script can be run on any accessible redis host to set-up the environment.
 
-#### Running on Kubernetes
+### Running on Kubernetes
 
 DeepPark runs natively on Kubernetes.
 To install DeepPark, simply run:
