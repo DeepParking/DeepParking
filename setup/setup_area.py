@@ -20,7 +20,6 @@ with open('area.json', 'r') as f:
 area_id = area['id']
 json_str = json.dumps(area)
 
-r.set(area_id, json_str)
-r.lpush('areas', str(area_id))
+r.set("area-" + str(area_id), json_str)
 
 print("Parking area set up successfully!")
