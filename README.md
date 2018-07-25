@@ -125,16 +125,7 @@ Simply open camera_tester/index.html on a local device (or behind an SSL public 
 * Area ID - The Area ID you created in setup/area.json
 * Camera ID - The ID of the camera you will be sending photos as, created in setup/area.json
 
-##### Get the External IP of the camera tester:
-
-```
-$ kubectl get svc camera-tester-svc
-```
-
-Point your browser window to the IP of the camera tester.
-
-The Camera Tester App will ask for the IP address of the Camera Gateway API.
-Get it with:
+Get the Camera Gateway IP with:
 
 ```
 $ kubectl get svc camera-gateway-svc
