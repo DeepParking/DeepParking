@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spots-api-deployment
+  labels:
+    app: spots-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spots-api
+  template:
+    metadata:
+      labels:
+        app: spots-api
+    spec:
+      containers:
+      - name: spots-api
+        image: yaron2/spotsapi
+        env:
+        - name: REDIS_HOST
+          value: "redis-svc.default.svc.cluster.local"
+        ports:
+        - containerPort: 8000
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: spots-api-svc
+spec:
+  selector:
+    app: spots-api
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8000
+  type: LoadBalancer

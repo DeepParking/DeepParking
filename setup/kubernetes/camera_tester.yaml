@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: camera-tester-deployment
+  labels:
+    app: camera-tester
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: camera-tester
+  template:
+    metadata:
+      labels:
+        app: camera-tester
+    spec:
+      containers:
+      - name: camera-tester
+        image: yaron2/cameratester
+        ports:
+        - containerPort: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: camera-tester-svc
+spec:
+  selector:
+    app: camera-tester
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: LoadBalancer

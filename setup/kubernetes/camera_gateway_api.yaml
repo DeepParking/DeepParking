@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: camera-gateway-deployment
+  labels:
+    app: camera-gateway
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: camera-gateway
+  template:
+    metadata:
+      labels:
+        app: camera-gateway
+    spec:
+      containers:
+      - name: camera-gateway
+        image: yaron2/cameraapi
+        env:
+        - name: REDIS_HOST
+          value: "redis-svc.default.svc.cluster.local"
+        ports:
+        - containerPort: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: camera-gateway-svc
+spec:
+  selector:
+    app: camera-gateway
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+  type: LoadBalancer
