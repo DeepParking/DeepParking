@@ -99,14 +99,9 @@ $ python3 ./setup/setup_area.py --redis-host=localhost
 $ kubectl get svc camera-tester-svc
 ```
 
+Point your browser window to http://<CAMERA-TESTER-IP>.
 
-##### Get the External IP of the camera tester:
-
-```
-$ kubectl get svc camera-tester-svc
-```
-
-The Camera Tester App will ask for the address of the Camera Gateway API.
+The Camera Tester App will ask for the IP address of the Camera Gateway API.
 Get it with:
 
 ```
@@ -121,6 +116,10 @@ $ kubectl get svc camera-gateway-svc
 ```
 $ kubectl get svc driver-app-svc
 ```
+
+Point your mobile device browser to http://<DRIVER-APP-IP>.
+
+Done!
 
 -----------------------------
 
