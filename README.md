@@ -21,13 +21,13 @@ With **DeepParking**, you'll never have to waste time hunting for a parking spot
 #### [Deep Learning: Object Detection](https://github.com/DeepParking/DeepParking/tree/master/camera_gateway_api)
 Leverages the state-of-the-art [YOLO](https://pjreddie.com/darknet/yolo/) v3 real-time object detection system.
 
-#### Backends
+#### [Backends](https://github.com/DeepParking/DeepParking/tree/master/camera_gateway_api)
 Written in [Python 3.6.5](https://github.com/python) using [Flask](http://flask.pocoo.org/)
 
 #### Persistent Store
 [Redis](https://github.com/antirez/redis) - A blazing fast in-memory database with disk persistence.
 
-#### [Scalable Deployment](https://github.com/DeepParking/DeepParking/tree/master/spots_api)
+#### [Scalable Deployment](hhttps://github.com/DeepParking/DeepParking/tree/master/setup/kubernetes)
 Docker, Kubernetes
 
 ----------------------------
