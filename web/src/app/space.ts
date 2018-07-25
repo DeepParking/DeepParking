@@ -2,6 +2,6 @@ export class Space {
     level: number;
     row: number;
     position: number;
-    name: string;
+    id: string;
     imageUrl: string;
 }
