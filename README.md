@@ -11,13 +11,31 @@ With **DeepParking**, you'll never have to waste time hunting for a parking spot
 
 ### 📖 Technical Stack
 
+![](https://github.com/DeepParking/DeepParking/blob/master/img/cardetectorgif.gif)
+
 **DeepParking** prides itself on being a 100% open-source solution, from algorithm to web application.
 
-* Web Application (Angular)
-* Deep Learning (Python)
-* Deployment (Kubernetes, Docker)
+#### [Web Application](https://github.com/DeepParking/DeepParking/tree/master/web)
+Angular CLI version 6.0.8.
+
+#### [Deep Learning: Object Detection](https://github.com/DeepParking/DeepParking/tree/master/camera_gateway_api)
+Leverages the state-of-the-art [YOLO](https://pjreddie.com/darknet/yolo/) v3 real-time object detection system.
+
+#### [Scalable Deployment](https://github.com/DeepParking/DeepParking/tree/master/spots_api)
+Docker, Kubernetes, Redis.
 
 ----------------------------
+
+### 📹 Hardware Configuration
+
+For optimal results with **DeepParking**, we recommend using a camera configuration similar to the one shown below. No more than five parking spots should be visible for any single captured frame; a single camera with one degree of rotation can be used to monitor 10 parking spots. It is recommended that an image for each 5-space frame is captured every 15 to 20 seconds.
+
+Estimated cost for 100-car garage: $150
+
+![](https://github.com/DeepParking/DeepParking/blob/master/img/camera_config.jpg)
+
+-----------------------------
+
 ### 👍 Project Team
 
 * [**Haishi Bai**](https://twitter.com/HaishiBai2010) (_Principal Software Engineer_, Office of the Azure CTO)
